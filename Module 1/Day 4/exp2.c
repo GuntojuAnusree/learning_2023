@@ -1,46 +1,26 @@
 #include <stdio.h>
 
-struct complex {
-  float real;
-  float imag;
-};
-
-void read_complex(struct complex *c) {
-  printf("Enter the real part of the complex number: ");
-  scanf("%f", &c->real);
-  printf("Enter the imaginary part of the complex number: ");
-  scanf("%f", &c->imag);
-}
-
-void write_complex(struct complex *c) {
-  printf("The complex number is: %f + %fi\n", c->real, c->imag);
-}
-
-struct complex add_complex(struct complex *c1, struct complex *c2) {
-  struct complex sum;
-  sum.real = c1->real + c2->real;
-  sum.imag = c1->imag + c2->imag;
-  return sum;
-}
-
-struct complex multiply_complex(struct complex *c1, struct complex *c2) {
-  struct complex product;
-  product.real = c1->real * c2->real - c1->imag * c2->imag;
-  product.imag = c1->real * c2->imag + c1->imag * c2->real;
-  return product;
-}
+#define SIZE 5 
 
 int main() {
-  struct complex c1, c2, sum, product;
+    int array[SIZE] = {3, 1, 4, 2, 5};
+    int min = array[0]; 
+    int max = array[0]; 
+    int i;
 
-  read_complex(&c1);
-  read_complex(&c2);
 
-  sum = add_complex(&c1, &c2);
-  write_complex(&sum);
+    for (i = 1; i < SIZE; i++) {
+        if (array[i] < min) {
+            min = array[i];
+        }
+        if (array[i] > max) {
+            max = array[i];
+        }
+    }
 
-  product = multiply_complex(&c1, &c2);
-  write_complex(&product);
 
-  return 0;
+    printf("Minimum: %d\n", min);
+    printf("Maximum: %d\n", max);
+
+    return 0;
 }

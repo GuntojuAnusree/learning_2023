@@ -1,35 +1,32 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-struct student {
-  char name[20];
-  int roll_number;
-  float marks;
-};
+#define SIZE 5 
 
 int main() {
-  int n;
-  printf("Enter the number of students: ");
-  scanf("%d", &n);
+    int array[SIZE] = {1, 2, 3, 4, 5};
+    int start = 0;
+    int end = SIZE - 1;
+    int temp;
 
-  struct student *students = (struct student *)malloc(n * sizeof(struct student));
 
-  for (int i = 0; i < n; i++) {
-    printf("Enter the name of student %d: ", i + 1);
-    scanf("%s", students[i].name);
-    printf("Enter the roll number of student %d: ", i + 1);
-    scanf("%d", &students[i].roll_number);
-    printf("Enter the marks of student %d: ", i + 1);
-    scanf("%f", &students[i].marks);
-  }
+    while (start < end) {
 
-  for (int i = 0; i < n; i++) {
-    printf("Name: %s\n", students[i].name);
-    printf("Roll number: %d\n", students[i].roll_number);
-    printf("Marks: %.2f\n", students[i].marks);
-  }
+        temp = array[start];
+        array[start] = array[end];
+        array[end] = temp;
 
-  free(students);
+        // Move start index towards the end
+        start++;
 
-  return 0;
+        // Move end index towards the start
+        end--;
+    }
+
+    printf("Reversed Array: ");
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+
+    return 0;
 }
